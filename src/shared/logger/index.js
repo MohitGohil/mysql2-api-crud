@@ -1,9 +1,8 @@
 import pino from "pino";
 import os from "node:os";
 
-const env = process.env.NODE_ENV;
-const isProd = process.env.NODE_ENV === "production";
-const logDirPath = "../../../data/logs";
+const env = process.env.NODE_ENV || "development";
+const isProd = env === "production";
 
 // Configure multiple transport targets for different log levels and formats
 // Level hierarchy: fatal > error > warn > info > debug > trace
@@ -23,7 +22,7 @@ const transportTargets = [
     target: "pino/file",
     level: "info",
     options: {
-      destination: `${logDirPath}/combined.log`,
+      destination: "./data/logs/combined.log",
       mkdir: true,
     },
   },
@@ -31,7 +30,7 @@ const transportTargets = [
     target: "pino/file",
     level: "error",
     options: {
-      destination: `${logDirPath}/error.log`,
+      destination: "./data/logs/error.log",
       mkdir: true,
     },
   },
