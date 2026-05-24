@@ -35,7 +35,7 @@ export class EmployeeController {
     }
   }
 
-  async createEmployee(req, res) {
+  async createEmployee(req, res, next) {
     try {
       const { first_name, last_name, job_title, salary, reports_to, office_id } = req.body;
       const [data] = await mySqlPool.execute(queries.createNewEmployee, [
@@ -55,7 +55,7 @@ export class EmployeeController {
     }
   }
 
-  async updateEmployee(req, res) {
+  async updateEmployee(req, res, next) {
     try {
       const id = parseInt(req.params.id);
       const { first_name, last_name, job_title, salary, reports_to, office_id } = req.body;
@@ -78,7 +78,7 @@ export class EmployeeController {
     }
   }
 
-  async deleteEmployee(req, res) {
+  async deleteEmployee(req, res, next) {
     try {
       const id = parseInt(req.params.id);
       const [data] = await mySqlPool.execute(queries.deleteEmployeeById, [id]);

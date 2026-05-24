@@ -5,9 +5,9 @@ export const successResponse = (req, res, payload = null, statusCode = 200) => {
   });
 };
 
-export const errorResponse = (req, res, message, statusCode = 500) => {
+export const errorResponse = (res, errorDetail, statusCode = 500) => {
   return res.status(statusCode).json({
     success: false,
-    error: message,
+    error: errorDetail,
   });
 };
